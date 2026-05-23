@@ -2,15 +2,15 @@ import React from "react";
 import { Footer, Header } from "../components";
 import { Outlet } from "react-router-dom";
 
-const NonAuthLayout = () => {
+const NonAuthLayout = (props: any) => {
   return (
     <>
-      <Header />
+      <Header name={props.UserName} />
       <main className="min-h-[80vh]">
-          <Outlet />
+        <Outlet />
       </main>
-      
-      <Footer />
+
+      <Footer name={props.UserName} />
     </>
   );
 };

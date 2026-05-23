@@ -1,19 +1,18 @@
-import {RouterProvider } from 'react-router-dom'
-import { MyRouter } from './routes/router';
+import { RouterProvider } from "react-router-dom";
+import { MyRouter } from "./routes/router";
 
 const App = () => {
   return (
     <div>
       <RouterProvider router={MyRouter()} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
-
-
-{/* <BrowserRouter>
+{
+  /* <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/registration' element={<Registration />} />
@@ -21,4 +20,5 @@ export default App
         <Route path='/about' element={<AboutPage />} />
         <Route path='*' element={<h1>404 Not Found</h1>} />
       </Routes>
-    </BrowserRouter> */}
+    </BrowserRouter> */
+}

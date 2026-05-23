@@ -44,7 +44,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-5">
+    <div className="p-1 md:p-3">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
