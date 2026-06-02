@@ -36,7 +36,7 @@ const AuthLayout = () => {
   // Highlight menu key based on current pathname
   const getSelectedKey = () => {
     if (location.pathname.includes("dashboard")) return "1";
-    if (location.pathname.includes("profile")) return "2";
+    if (location.pathname.includes("student-registration")) return "2";
     return "1";
   };
 
@@ -48,8 +48,8 @@ const AuthLayout = () => {
     },
     {
       key: "2",
-      icon: <UserOutlined className="text-lg" />,
-      label: <Link to="/auth/profile">Profile</Link>,
+      icon: <HomeOutlined className="text-lg" />,
+      label: <Link to="/auth/student-registration">Student Registration</Link>,
     },
     {
       key: "3",

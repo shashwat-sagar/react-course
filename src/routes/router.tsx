@@ -6,6 +6,8 @@ import AuthLayout from "../layout/AuthLayout";
 import Dashboard from "../pages/auth/Dashboard";
 import UserProfile from "../pages/auth/UserProfile";
 import ProtectedRoute from "./ProtectedRoute";
+import StudentRegistration from "../pages/auth/StudentRegistration";
+import StudentRegistrationNew from "../pages/auth/StudentRegistrationNew";
 
 export function MyRouter() {
   // const data = {
@@ -66,6 +68,11 @@ export function MyRouter() {
           path: "profile",
           element: <UserProfile />,
         },
+        {
+          path: "student-registration",
+          element: <StudentRegistrationNew />,
+        },
+       
       ],
     },
   ];

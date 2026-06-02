@@ -15,8 +15,6 @@ import {
 } from "lucide-react";
 import { Button, Input, Checkbox, message, Form } from "antd";
 import useAuthStore from "../store/store";
-import fakeLogin from "../services/FakeLogin";
-import useAppStore from "../store/appStore";
 import { useMutation } from "@tanstack/react-query";
 import { loginApi } from "../services/api";
 
