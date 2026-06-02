@@ -17,8 +17,16 @@ import { Button, Input, Checkbox, message, Form } from "antd";
 import useAuthStore from "../store/store";
 import fakeLogin from "../services/FakeLogin";
 import useAppStore from "../store/appStore";
+import { useMutation } from "@tanstack/react-query";
+import { loginApi } from "../services/api";
 
 type PortalMode = "student" | "faculty";
+
+const loginUser = async(payload:UserLoginPayload)=>{
+    const {data} = await loginApi(payload);
+    console.log("data:", data);
+    return data.data;
+}
 
 const LoginPage = () => {
   const [mode, setMode] = useState<PortalMode>("student");
@@ -33,32 +41,28 @@ const LoginPage = () => {
     }
   }, [isAuthenticated]);
 
+
+const {mutate, isPending}=useMutation({
+  mutationKey:["login",],   //save cache under this name
+  mutationFn:loginUser,
+  onSuccess:(data:any)=>{ 
+    message.success(data.message)
+    const {user, accessToken, refreshToken}=data;
+    setStore(user, accessToken, refreshToken)
+    console.log("api response:", data);
+  },
+  onError:(error:any)=>{
+    
+    message.error(error?.response?.data?.message)
+  }
+})
+
+
+
   const handleLogin = async (values: any) => {
     const { email, password } = values;
-    setLoading(true);
-    message.loading({ content: "Verifying credentials...", key: "login" });
-
-    try {
-      const res: any = await fakeLogin(email, password);
-      // Save credentials in the Zustand store
-      setStore(res.user, res.accessToken, res.refreshToken);
-
-      message.success({
-        content: `Logged in successfully! Welcome to the ${mode === "student" ? "Student" : "Faculty"} Portal.`,
-        key: "login",
-        duration: 2,
-      });
-
-      navigate("/auth/dashboard");
-    } catch (err: any) {
-      message.error({
-        content: err || "Invalid email or password",
-        key: "login",
-        duration: 2.5,
-      });
-    } finally {
-      setLoading(false);
-    }
+    mutate(values);
+   
   };
 
   return (
