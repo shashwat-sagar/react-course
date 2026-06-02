@@ -43,7 +43,7 @@ const LoginPage = () => {
 
 
 const {mutate, isPending}=useMutation({
-  mutationKey:["login",],   //save cache under this name
+  mutationKey:["login",],   //saves cache under this name
   mutationFn:loginUser,
   onSuccess:(data:any)=>{ 
     message.success(data.message)
